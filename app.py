@@ -8,7 +8,6 @@ from handlers import main
 define('port', default=8888, help='run port', type=int )
 
 
-
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
