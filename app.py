@@ -12,6 +12,8 @@ class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
             ('/index', main.IndexHandler),
+            (r'/explore',main.ExploreHandler),
+            (r'/post/(?P<post_id>[0-9]+)', main.PostHandler)
         ]
         settings = dict(
             debug = True,
