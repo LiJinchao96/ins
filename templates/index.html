@@ -4,4 +4,9 @@
 
 {% block content %}
 index content
+<br>
+{% for i in range(1,4) %}
+<img src=" {{ static_url("images/{}.jpg".format(i)) }}" width="500" height="600" />
+
+   {% end %}
 {% end %}

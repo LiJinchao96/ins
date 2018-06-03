@@ -11,13 +11,14 @@ define('port', default=8888, help='run port', type=int )
 class Application(tornado.web.Application):
     def __init__(self):
         handlers = [
-            ('/index', main.IndexHandler),
+            ('/', main.IndexHandler),
             (r'/explore',main.ExploreHandler),
             (r'/post/(?P<post_id>[0-9]+)', main.PostHandler)
         ]
         settings = dict(
             debug = True,
-            template_path='templates'
+            template_path='templates',
+            static_path='statics',
         )
 
         super(Application,self).__init__(handlers, **settings)
