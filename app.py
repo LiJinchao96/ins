@@ -13,17 +13,19 @@ class Application(tornado.web.Application):
         handlers = [
             ('/', main.IndexHandler),
             (r'/explore',main.ExploreHandler),
-            (r'/post/(?P<post_id>[0-9]+)', main.PostHandler)
+            (r'/post/(?P<post_id>[0-9]+)', main.PostHandler),
+            (r'/upload',main.UploadHandler)
         ]
         settings = dict(
             debug = True,
             template_path='templates',
-            static_path='statics',
+            static_path='static',
         )
 
         super(Application,self).__init__(handlers, **settings)
 
 application = Application()
+
 
 if __name__ == '__main__':
     tornado.options.parse_command_line()
