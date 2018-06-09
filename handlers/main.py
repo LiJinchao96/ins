@@ -1,13 +1,17 @@
 import tornado.web
 import os
+from pycket.session import SessionMixin
 from utils import photo
 
+class AuthBaseHandler(tornado.web.RequestHandler, SessionMixin):
+    def get_current_user(self):
+        return self.session.get('user_info')
 
-
-class IndexHandler(tornado.web.RequestHandler):
+class IndexHandler(AuthBaseHandler):
     """
     Home page for use,photo feeds
     """
+    @tornado.web.authenticated
     def get(self):
         images_path= os.path.join(self.settings.get('static_path'), 'uploads')
         images = photo.get_images(images_path)
@@ -16,7 +20,7 @@ class IndexHandler(tornado.web.RequestHandler):
 
 class ExploreHandler(tornado.web.RequestHandler):
     def get(self):
-        thumbs_path = os.path.join(self.settings.get('static_path'), 'uploads/thumbs')
+        #thumbs_path = os.path.join(self.settings.get('static_path'), 'uploads/thumbs')
         image_urls = photo.get_images('./static/uploads/thumbs')
         self.render('explore.html',
                     images=image_urls,
