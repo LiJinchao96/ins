@@ -5,7 +5,7 @@
 {% block content %}
     explore content
     {% for img in images %}
-    <img src="{{ img }}" width="200" height="200" />
+    <img src="{{ static_url(img) }}" width="200" height="200" />
     {% end %}
 
 {% end %}

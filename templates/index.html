@@ -6,6 +6,6 @@
 index content
 <br>
     {% for img in images %}
-    <img src="{{ img }}" width="500" height="600" />
+    <img src="{{ static_url(img) }}" width="500" height="600" />
     {% end %}
 {% end %}
